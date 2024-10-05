@@ -54,4 +54,10 @@
   </script>
 </light-preview>
 
-### First Example
+
+## DSD Markup
+
+```html
+<!-- <kr-layout> DSD ->
+<%= File.read("../exports/components/kr-layout/kr-layout.dsd.html").html_safe %>
+```
