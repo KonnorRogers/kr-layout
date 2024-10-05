@@ -179,17 +179,17 @@ export default function (plop) {
   plop.setGenerator("precompile-templates", {
     description: "Update readme contents to include `<kr-layout>` SSR.",
     prompts: [],
-    actions: {
+    actions: [{
       type: "add",
       force: true,
       path: "../../exports/components/kr-layout/kr-layout.dsd.html",
       transform(_fileContents, _data) {
-        return `
-          <!-- This file is auto-generated -->
-          ${KrLayout.compile()}
-        `
+        return (
+          "<!-- This file is auto-generated -->\n" +
+          KrLayout.renderDSD()
+        )
       }
-    }
+    }]
   })
 }
 

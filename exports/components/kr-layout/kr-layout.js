@@ -20,6 +20,8 @@ const html = String.raw
  * @cssproperty --example - An example CSS custom property.
  */
 export default class KrLayout extends BaseElement {
+  static styles = componentStyles
+
   /**
    * @param {string} slot
    */
@@ -69,12 +71,8 @@ export default class KrLayout extends BaseElement {
     }
   }
 
-  static render () {
+  static renderHTML () {
     return html`
-      <!-- version: ${this.version} -->
-      <style>
-        ${componentStyles}
-      </style>
       <div class="visually-hidden skip-links" part="skip-links">
         <slot name="skip-links">
         </slot>
@@ -115,13 +113,32 @@ export default class KrLayout extends BaseElement {
       <div part="dialog" class="dialog">
         <slot name="dialog"></slot>
       </div>
+  `
+  }
+
+  static render () {
+    return html`
+      <!-- version: ${this.version} -->
+      <style>
+        ${this.styles}
+      </style>
+
+      ${this.renderHTML()}
     `
   }
 
   /**
    * Renders to declarative shadow dom.
    */
-  static compile() {
-    return html`<template shadowrootmode="open">${this.render()}</template>`
+  static renderDSD() {
+    return html`<template shadowrootmode="open">
+  <!-- version: ${this.version} -->
+  <style>
+    ${this.styles.trim().split(/\n/).join("\n  ")}
+  </style>
+
+  <!-- renderHTML() -->
+  ${this.renderHTML().split(/\n    /).join("\n").trim()}
+</template>`
   }
 }
