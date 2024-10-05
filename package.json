@@ -1,7 +1,7 @@
 {
   "name": "kr-layout",
   "version": "0.0.1",
-  "description": "<description>",
+  "description": "A component for quickly scaffolding layouts",
   "main": "./exports/index.js",
   "module": "./exports/index.js",
   "types": "./exports/index.d.ts",
