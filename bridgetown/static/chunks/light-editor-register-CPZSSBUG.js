@@ -1,0 +1,2 @@
+import{a as t}from"/kr-layout/bridgetown/static/chunks/chunk-BS3QTAHS.js";import"/kr-layout/bridgetown/static/chunks/chunk-4FWE3PE6.js";import"/kr-layout/bridgetown/static/chunks/chunk-BD35OEKT.js";import"/kr-layout/bridgetown/static/chunks/chunk-RJRXH36Q.js";import"/kr-layout/bridgetown/static/chunks/chunk-XODAD7JN.js";var i=t;t.define();export{i as default};
+//# sourceMappingURL=/kr-layout/bridgetown/static/chunks/light-editor-register-CPZSSBUG.js.map
