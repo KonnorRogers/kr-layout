@@ -1,4 +1,4 @@
-const css = String.raw
+const css = String.raw;
 
 export const componentStyles = css`
   *,
@@ -58,8 +58,10 @@ export const componentStyles = css`
     justify-content: center;
   }
 
-  *, *:after, *:before {
-    box-sizing: border-box;;
+  *,
+  *:after,
+  *:before {
+    box-sizing: border-box;
   }
 
   :host::part(base) {
@@ -93,7 +95,10 @@ export const componentStyles = css`
   :host::part(body) {
     display: grid;
     /** Menu, Main, Aside **/
-    grid-template-columns: minmax(0, var(--menu-width)) minmax(0, var(--main-width)) minmax(0, var(--aside-width));
+    grid-template-columns: minmax(0, var(--menu-width)) minmax(
+        0,
+        var(--main-width)
+      ) minmax(0, var(--aside-width));
     grid-template-rows: minmax(0, 1fr);
   }
 
@@ -129,7 +134,8 @@ export const componentStyles = css`
     grid-template-rows: minmax(0, auto) minmax(0, 1fr) minmax(0, auto);
   }
 
-  :host::part(footer) {}
+  :host::part(footer) {
+  }
 
   .skip-links {
     position: absolute;
@@ -144,4 +150,4 @@ export const componentStyles = css`
     place-items: center;
     text-align: center;
   }
-`
+`;

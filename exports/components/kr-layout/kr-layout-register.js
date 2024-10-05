@@ -1,10 +1,10 @@
 // @ts-check
-import KrLayout from './kr-layout.js';
+import KrLayout from "./kr-layout.js";
 
-KrLayout.define('kr-layout');
+KrLayout.define("kr-layout");
 
 export default KrLayout;
-export * from './kr-layout.js';
+export * from "./kr-layout.js";
 
 /**
  * @type {import("./kr-layout-globals.js")}

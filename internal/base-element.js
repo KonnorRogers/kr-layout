@@ -3,7 +3,7 @@ import { version } from "./version.js";
 // polyfill for SSR compiling templates
 if (typeof HTMLElement === "undefined") {
   // @ts-expect-error
-  globalThis.HTMLElement = class HTMLElement {}
+  globalThis.HTMLElement = class HTMLElement {};
 }
 
 /**
@@ -20,19 +20,19 @@ export class BaseElement extends HTMLElement {
   /**
    * @type {string}
    */
-  static baseName
+  static baseName;
 
   /**
    * @param {string} [name=this.baseName] - Tag name
    * @param {CustomElementConstructor} [ctor=this] - Constructor to pass to define
    * @param {ElementDefinitionOptions} [additionalOptions]
    */
-  static define (name = this.baseName, ctor = this, additionalOptions) {
+  static define(name = this.baseName, ctor = this, additionalOptions) {
     if (customElements.get(name)) {
-      return
+      return;
     }
 
-    customElements.define(name, ctor, additionalOptions)
+    customElements.define(name, ctor, additionalOptions);
   }
 
   constructor() {

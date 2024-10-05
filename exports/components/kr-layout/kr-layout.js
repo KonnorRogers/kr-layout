@@ -1,7 +1,7 @@
 import { BaseElement } from "../../../internal/base-element.js";
 import { componentStyles } from "./kr-layout.styles.js";
 
-const html = String.raw
+const html = String.raw;
 
 /**
  * @customElement
@@ -37,46 +37,46 @@ const html = String.raw
  * @cssproperty --example - An example CSS custom property.
  */
 export default class KrLayout extends BaseElement {
-  static styles = componentStyles
+  static styles = componentStyles;
 
-
-  get disableSticky () {
-    return this._disableSticky
+  get disableSticky() {
+    return this._disableSticky;
   }
 
   /**
    * @param {null | string} val
    */
-  set disableSticky (val) {
-    this._disableSticky = val
+  set disableSticky(val) {
+    this._disableSticky = val;
     if (val == null) {
-      this.removeAttribute("disable-sticky")
+      this.removeAttribute("disable-sticky");
     }
-    this.setAttribute("disable-sticky", String(val))
+    this.setAttribute("disable-sticky", String(val));
   }
 
   /**
    * @param {string} slot
    */
-  createResizeObserver (slot) {
+  createResizeObserver(slot) {
     return new ResizeObserver((entries) => {
       for (const entry of entries) {
         if (entry.contentBoxSize) {
           const contentBoxSize = entry.borderBoxSize[0];
           if (this.disableSticky && this.disableSticky.includes(slot)) {
-            this.style.setProperty(`--${slot}-height`, `${contentBoxSize.blockSize}px`)
+            this.style.setProperty(
+              `--${slot}-height`,
+              `${contentBoxSize.blockSize}px`,
+            );
           } else {
-            this.style.setProperty(`--${slot}-height`, `0px`)
+            this.style.setProperty(`--${slot}-height`, `0px`);
           }
         }
       }
-    })
+    });
   }
 
-  static get observedAttributes () {
-    return [
-      "disable-sticky"
-    ]
+  static get observedAttributes() {
+    return ["disable-sticky"];
   }
 
   /**
@@ -84,63 +84,64 @@ export default class KrLayout extends BaseElement {
    * @param {string | null} oldVal
    * @param {string | null} newVal
    */
-  attributeChangedCallback (name, oldVal, newVal) {
+  attributeChangedCallback(name, oldVal, newVal) {
     switch (name) {
       case "disable-sticky":
-        this.disableSticky = newVal
+        this.disableSticky = newVal;
         break;
     }
   }
 
-  constructor () {
-    super()
+  constructor() {
+    super();
     /**
      * @type {null | string}
      */
-    this._disableSticky = null
+    this._disableSticky = null;
 
     this.headerResizeObserver = this.createResizeObserver("header");
     this.footerResizeObserver = this.createResizeObserver("footer");
     if (!this.shadowRoot) {
-      this.attachShadow({ mode: "open" })
+      this.attachShadow({ mode: "open" });
       // @ts-expect-error
-      this.shadowRoot.innerHTML = /** @type {typeof KrLayout} */ (this.constructor).render()
+      this.shadowRoot.innerHTML = /** @type {typeof KrLayout} */ (
+        this.constructor
+      ).render();
     }
 
     /** @type {ShadowRoot} */
-    this.shadowRoot
+    this.shadowRoot;
   }
 
-  connectedCallback () {
+  connectedCallback() {
     setTimeout(() => {
-      this.header = this.shadowRoot.querySelector("[part~='header']")
-      this.footer = this.shadowRoot.querySelector("[part~='main-footer']")
+      this.header = this.shadowRoot.querySelector("[part~='header']");
+      this.footer = this.shadowRoot.querySelector("[part~='main-footer']");
 
       if (this.header) {
-        this.headerResizeObserver.observe(this.header)
+        this.headerResizeObserver.observe(this.header);
       }
 
       if (this.footer) {
-        this.footerResizeObserver.observe(this.footer)
+        this.footerResizeObserver.observe(this.footer);
       }
-    })
+    });
   }
 
-  disconnectedCallback () {
+  disconnectedCallback() {
     if (this.header) {
-      this.headerResizeObserver.unobserve(this.header)
+      this.headerResizeObserver.unobserve(this.header);
     }
 
     if (this.footer) {
-      this.footerResizeObserver.unobserve(this.footer)
+      this.footerResizeObserver.unobserve(this.footer);
     }
   }
 
-  static renderHTML () {
+  static renderHTML() {
     return html`
       <div class="visually-hidden skip-links" part="skip-links">
-        <slot name="skip-links">
-        </slot>
+        <slot name="skip-links"> </slot>
       </div>
 
       <div class="base" part="base">
@@ -178,10 +179,10 @@ export default class KrLayout extends BaseElement {
       <div part="dialog" class="dialog">
         <slot name="dialog"></slot>
       </div>
-  `
+    `;
   }
 
-  static render () {
+  static render() {
     return html`
       <!-- version: ${this.version} -->
       <style>
@@ -189,7 +190,7 @@ export default class KrLayout extends BaseElement {
       </style>
 
       ${this.renderHTML()}
-    `
+    `;
   }
 
   /**
@@ -197,13 +198,16 @@ export default class KrLayout extends BaseElement {
    */
   static renderDSD() {
     return html`<template shadowrootmode="open">
-  <!-- version: ${this.version} -->
-  <style>
-    ${this.styles.trim().split(/\n/).join("\n  ")}
-  </style>
+      <!-- version: ${this.version} -->
+      <style>
+        ${this.styles.trim().split(/\n/).join("\n  ")}
+      </style>
 
-  <!-- renderHTML() -->
-  ${this.renderHTML().split(/\n    /).join("\n").trim()}
-</template>`
+      <!-- renderHTML() -->
+      ${this.renderHTML()
+        .split(/\n    /)
+        .join("\n")
+        .trim()}
+    </template>`;
   }
 }

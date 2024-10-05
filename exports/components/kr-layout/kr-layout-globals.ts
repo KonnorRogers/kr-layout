@@ -1,9 +1,9 @@
-import type KrLayout from "./kr-layout.js"
+import type KrLayout from "./kr-layout.js";
 
 declare global {
   interface HTMLElementTagNameMap {
-    'kr-layout': KrLayout
+    "kr-layout": KrLayout;
   }
 }
 
-export {}
+export {};
