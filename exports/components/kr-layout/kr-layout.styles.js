@@ -108,6 +108,19 @@ export const componentStyles = css`
     overscroll-behavior: contain;
   }
 
+  :host([disable-sticky~="header"]) {
+    --header-height: 0px;
+  }
+
+  :host([disable-sticky~="header"])::part(header) {
+    position: static;
+  }
+
+  :host([disable-sticky~="aside"])::part(aside),
+  :host([disable-sticky~="menu"])::part(menu) {
+    position: static;
+  }
+
   :host::part(main) {
     position: relative;
     display: grid;
