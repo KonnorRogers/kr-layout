@@ -1,6 +1,6 @@
 {
   "name": "kr-layout",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "<description>",
   "main": "./exports/index.js",
   "module": "./exports/index.js",
@@ -92,6 +92,5 @@
     "kr-layout": "link:."
   },
   "customElements": "custom-elements.json",
-  "dependencies": {
-  }
+  "dependencies": {}
 }
