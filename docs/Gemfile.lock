@@ -159,7 +159,7 @@ GEM
       io-console (~> 0.5)
     reverse_markdown (2.1.1)
       nokogiri
-    rexml (3.3.7)
+    rexml (3.3.8)
     roda (3.84.0)
       rack
     roda-route_list (2.1.0)
