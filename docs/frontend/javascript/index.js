@@ -1,4 +1,4 @@
-import "{{ packageName }}";
+import "kr-layout";
 import "./src/stackblitz-button.js"
 import "./src/codepen-button.js"
 import "../styles/index.css";

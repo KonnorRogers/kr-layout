@@ -1,5 +1,5 @@
 {
-  "name": "{{ packageName }}",
+  "name": "kr-layout",
   "version": "0.0.0",
   "description": "<description>",
   "main": "./exports/index.js",
@@ -34,11 +34,12 @@
     "build:api-json": "typedoc --json ./typedoc-generation.json ./exports/**/*.js",
     "build:cdn": "node esbuild.config.js",
     "build:cem": "custom-elements-manifest analyze",
-    "build:docs": "pnpm run build && cd docs && pnpm run build",
+    "build:docs": "pnpm run precompile-templates && pnpm run build && cd docs && pnpm run build",
     "build": "npm run clean && tsc && npm run build:cem &&  npm run build:cdn",
     "clean": "rimraf -g \"./{exports,internal}/**/*.d.ts\" -g \"./cdn\"",
     "create:component": "plop component --plopfile scripts/plop/plopfile.js",
     "rename-package": "plop rename-package --plopfile scripts/plop/plopfile.js",
+    "precompile-templates": "plop precompile-templates --plopfile scripts/plop/plopfile.js",
     "plop": "plop --plopfile scripts/plop/plopfile.js",
     "watch:cem": "custom-elements-manifest analyze --watch",
     "analyze": "custom-elements-manifest analyze",
@@ -57,11 +58,11 @@
   },
   "keywords": [],
   "license": "MIT",
-  "repository": "git@github.com:KonnorRogers/{{ packageName }}.git",
+  "repository": "git@github.com:KonnorRogers/kr-layout.git",
   "bugs": {
-    "url": "https://github.com/KonnorRogers/{{ packageName }}/issues"
+    "url": "https://github.com/KonnorRogers/kr-layout/issues"
   },
-  "homepage": "https://github.com/KonnorRogers/{{ packageName }}",
+  "homepage": "https://github.com/KonnorRogers/kr-layout",
   "author": "KonnorRogers <konnor5456@gmail.com>",
   "publishConfig": {
     "access": "public"
@@ -88,11 +89,9 @@
     "rimraf": "^5.0.7",
     "typedoc": "^0.26.1",
     "typescript": "~5.5.2",
-    "{{ packageName }}": "link:."
+    "kr-layout": "link:."
   },
   "customElements": "custom-elements.json",
   "dependencies": {
-    "lit": "^3.2.0",
-    "web-component-define": "^2.0.11"
   }
 }

@@ -1,11 +1,15 @@
-import { LitElement } from "lit";
-import { DefineableMixin } from "web-component-define";
 import { version } from "./version.js";
+
+// polyfill for SSR compiling templates
+if (typeof HTMLElement === "undefined") {
+  // @ts-expect-error
+  globalThis.HTMLElement = class HTMLElement {}
+}
 
 /**
  * @customElement
  */
-export class BaseElement extends DefineableMixin(LitElement) {
+export class BaseElement extends HTMLElement {
   /**
    * @type {Record<string, typeof BaseElement>}
    */
@@ -13,18 +17,23 @@ export class BaseElement extends DefineableMixin(LitElement) {
 
   static version = version;
 
-  // /**
-  //  * @param {string} [name=this.baseName] - Tag name
-  //  * @param {CustomElementConstructor} [ctor=this] - Constructor to pass to define
-  //  * @param {ElementDefinitionOptions} [additionalOptions]
-  //  */
-  // static define (name = this.baseName, ctor = this, additionalOptions) {
-  //   if (customElements.get(name)) {
-  //     return
-  //   }
+  /**
+   * @type {string}
+   */
+  static baseName
 
-  //   customElements.define(name, ctor, additionalOptions)
-  // }
+  /**
+   * @param {string} [name=this.baseName] - Tag name
+   * @param {CustomElementConstructor} [ctor=this] - Constructor to pass to define
+   * @param {ElementDefinitionOptions} [additionalOptions]
+   */
+  static define (name = this.baseName, ctor = this, additionalOptions) {
+    if (customElements.get(name)) {
+      return
+    }
+
+    customElements.define(name, ctor, additionalOptions)
+  }
 
   constructor() {
     super();

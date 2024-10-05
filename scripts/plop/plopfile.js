@@ -2,6 +2,7 @@ import { readdirSync, readFileSync } from "fs";
 import { fdir } from "fdir"
 import * as process from "process";
 import * as path from "path";
+import KrLayout from "../../exports/components/kr-layout/kr-layout.js"
 
 
 import * as url from 'url';
@@ -175,5 +176,20 @@ export default function (plop) {
 
 
   plop.setGenerator("rename-package", renamePackage(plop))
+  plop.setGenerator("precompile-templates", {
+    description: "Update readme contents to include `<kr-layout>` SSR.",
+    prompts: [],
+    actions: {
+      type: "add",
+      force: true,
+      path: "../../exports/components/kr-layout/kr-layout.dsd.html",
+      transform(_fileContents, _data) {
+        return `
+          <!-- This file is auto-generated -->
+          ${KrLayout.compile()}
+        `
+      }
+    }
+  })
 }
 

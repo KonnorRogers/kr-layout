@@ -1,8 +1,8 @@
-# `{{ packageName }}`
+# `kr-layout`
 
 ## Documentation
 
-<https://konnorrogers.github.io/{{ packageName }}>
+<https://konnorrogers.github.io/kr-layout>
 
 ## Initial install
 
@@ -36,3 +36,9 @@ Which will prompt you for a new name.
 `exports` and `internal` shouldn **NOT** write their own `.d.ts` that are co-located.
 
 `types/` is where you place your handwritten `.d.ts` files.
+
+## SSR
+
+To SSR this component, here's the expected Declarative Shadow DOM HTML, copy and paste the declarative shadow DOM HTML which can be found here:
+
+[/exports/kr-layout/kr-layout.dsd.html](/exports/kr-layout/kr-layout.dsd.html)

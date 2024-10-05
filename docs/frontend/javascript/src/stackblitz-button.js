@@ -73,11 +73,11 @@ export class StackblitzButton extends LitElement {
 
   constructor () {
     super()
-    this.projectTitle = "{{ packageName }}-starter",
+    this.projectTitle = "kr-layout-starter",
     this.projectDescription = "diff view element playground",
     this.files = {
       ".gitignore": this.gitIgnore(),
-      ["main.js"]: `import "{{ packageName }}"`,
+      ["main.js"]: `import "kr-layout"`,
       ["index.html"]: this.indexHTML(),
       ["package.json"]: this.packageJSON(),
     }
@@ -108,10 +108,10 @@ export class StackblitzButton extends LitElement {
 
         // Vendor files on localhost
         if (this.isLocal) {
-          const vendored_files = await (await fetch("/{{ packageName }}/vendor.json")).json()
+          const vendored_files = await (await fetch("/kr-layout/vendor.json")).json()
 
           Object.entries(vendored_files).forEach(([filename, content]) => {
-            this.files[`vendor/{{ packageName }}/${filename}`] = content
+            this.files[`vendor/kr-layout/${filename}`] = content
           })
         } else {
           // Use a version number for all others.
@@ -152,9 +152,9 @@ dist-ssr
   }
 
   packageJSON () {
-    const version = this.isLocal ? "file:./vendor/{{ packageName }}" : document.querySelector("meta[name='version-number']").content
+    const version = this.isLocal ? "file:./vendor/kr-layout" : document.querySelector("meta[name='version-number']").content
     return `{
-      "name": "{{ packageName }}-starter",
+      "name": "kr-layout-starter",
       "private": true,
       "version": "0.0.0",
       "type": "module",
@@ -164,7 +164,7 @@ dist-ssr
         "preview": "vite preview"
       },
       "dependencies": {
-        "{{ packageName }}": "${version}"
+        "kr-layout": "${version}"
       },
       "devDependencies": {
         "vite": "^5.4.0"

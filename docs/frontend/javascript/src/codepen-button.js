@@ -74,7 +74,7 @@ export class CodepenButton extends LitElement {
 
   constructor () {
     super()
-    this.projectTitle = "{{ packageName }}-starter",
+    this.projectTitle = "kr-layout-starter",
     this.projectDescription = "diff view element playground"
     this.html = ""
     this.css = ""
@@ -86,7 +86,7 @@ export class CodepenButton extends LitElement {
   }
 
   get preamble () {
-    return `<script type="module" src="https://cdn.jsdelivr.net/npm/{{ packageName }}@${this.versionNumber}/cdn/exports/index.js"></script>` + "\n"
+    return `<script type="module" src="https://cdn.jsdelivr.net/npm/kr-layout@${this.versionNumber}/cdn/exports/index.js"></script>` + "\n"
   }
 
   get postamble () {
