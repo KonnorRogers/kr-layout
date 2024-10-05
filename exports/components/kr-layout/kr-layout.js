@@ -11,8 +11,6 @@ const html = String.raw
  * @status experimental
  * @since 0.0.1
  *
- * @event light-event-name - Emitted as an example.
- *
  * @slot skip-links - A place to put visually hidden links for things like skipping to main content.
  * @slot header - The header slot for things like navigation
  * @slot main-header - A header that will appear "inline" with the main content area.
@@ -65,8 +63,10 @@ export default class KrLayout extends BaseElement {
       for (const entry of entries) {
         if (entry.contentBoxSize) {
           const contentBoxSize = entry.borderBoxSize[0];
-          if (this.disableSticky.includes(slot)) {
+          if (this.disableSticky && this.disableSticky.includes(slot)) {
             this.style.setProperty(`--${slot}-height`, `${contentBoxSize.blockSize}px`)
+          } else {
+            this.style.setProperty(`--${slot}-height`, `0px`)
           }
         }
       }
@@ -102,14 +102,18 @@ export default class KrLayout extends BaseElement {
     this.headerResizeObserver = this.createResizeObserver("header");
     this.footerResizeObserver = this.createResizeObserver("footer");
     if (!this.shadowRoot) {
-      this.shadowRoot = this.attachShadow({ mode: "open" })
+      this.attachShadow({ mode: "open" })
+      // @ts-expect-error
       this.shadowRoot.innerHTML = /** @type {typeof KrLayout} */ (this.constructor).render()
     }
+
+    /** @type {ShadowRoot} */
+    this.shadowRoot
   }
 
   connectedCallback () {
     setTimeout(() => {
-      this.header = this.shadowRoot?.querySelector("[part~='header']")
+      this.header = this.shadowRoot.querySelector("[part~='header']")
       this.footer = this.shadowRoot.querySelector("[part~='main-footer']")
 
       if (this.header) {
