@@ -101,19 +101,20 @@ export default class KrLayout extends BaseElement {
 
     this.headerResizeObserver = this.createResizeObserver("header");
     this.footerResizeObserver = this.createResizeObserver("footer");
-    if (!this.shadowRoot) {
-      this.attachShadow({ mode: "open" });
-      // @ts-expect-error
-      this.shadowRoot.innerHTML = /** @type {typeof KrLayout} */ (
-        this.constructor
-      ).render();
-    }
 
     /** @type {ShadowRoot} */
     this.shadowRoot;
   }
 
   connectedCallback() {
+    if (!this.shadowRoot) {
+      this.attachShadow({ mode: "open" });
+
+      /** @type {ShadowRoot & { set innerHTML(str: string) }} */ (this.shadowRoot).innerHTML = /** @type {typeof KrLayout} */ (
+        this.constructor
+      ).render();
+    }
+
     setTimeout(() => {
       this.header = this.shadowRoot.querySelector("[part~='header']");
       this.footer = this.shadowRoot.querySelector("[part~='main-footer']");
