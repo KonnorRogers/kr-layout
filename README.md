@@ -41,4 +41,4 @@ Which will prompt you for a new name.
 
 To SSR this component, here's the expected Declarative Shadow DOM HTML, copy and paste the declarative shadow DOM HTML which can be found here:
 
-[/exports/kr-layout/kr-layout.dsd.html](/exports/kr-layout/kr-layout.dsd.html)
+[exports/components/kr-layout/kr-layout.dsd.html](/exports/components/kr-layout/kr-layout.dsd.html)
