@@ -1,0 +1,2 @@
+import{g as c}from"/kr-layout/pull/1/bridgetown/static/chunks/chunk-RRFZFN4M.js";function w(t,l){let o=c({waitUntilFirstUpdate:!1},l);return(a,r)=>{let{update:d}=a,f=Array.isArray(t)?t:[t];a.update=function(i){f.forEach(u=>{let s=u;if(i.has(s)){let e=i.get(s),n=this[s];e!==n&&(!o.waitUntilFirstUpdate||this.hasUpdated)&&this[r](e,n)}}),d.call(this,i)}}}export{w as a};
+//# sourceMappingURL=/kr-layout/pull/1/bridgetown/static/chunks/chunk-DQAWZDGR.js.map
